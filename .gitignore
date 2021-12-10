@@ -2,3 +2,6 @@
 zig-*
 debug
 release
+.cache/
+.direnv
+.envrc
