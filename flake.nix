@@ -26,8 +26,8 @@
               dontConfigure = true;
               dontInstall = true;
               buildPhase = ''
-                ln -s ${known-folders.outPath} src/known-folders
-                ln -s ${zinput.outPath} src/zinput
+                cp -r ${known-folders.outPath} src/known-folders
+                cp -r ${zinput.outPath} src/zinput
                 mkdir -p $out
                 zig build install -Drelease-safe=true -Ddata_version=master --prefix $out
               '';
