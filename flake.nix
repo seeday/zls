@@ -25,10 +25,9 @@
               nativeBuildInputs = [ zig.packages."x86_64-linux".master.latest ];
               dontConfigure = true;
               dontInstall = true;
+              # the sub should probably go in preBuild but that doesn't seem to run?
               buildPhase = ''
-                cp -r ${known-folders.outPath}/ ./src/known-folders
-                cp -r ${zinput.outPath}/ ./src/zinput
-
+                substituteInPlace build.zig --replace 'src/known-folders' "${known-folders.outPath}" --replace 'src/zinput' "${zinput.outPath}"
                 mkdir -p $out
                 zig build install -Drelease-safe=true -Ddata_version=master --prefix $out
               '';
