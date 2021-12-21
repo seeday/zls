@@ -5,7 +5,7 @@
     zig.url = "github:arqv/zig-overlay";
     zinput.url = "github:ziglibs/zinput/5e0d781";
     zinput.flake = false;
-    known-folders.url = "github:ziglibs/known-folders/0c6c484";
+    known-folders.url = "github:ziglibs/known-folders/9db1b99219c767d5e24994b1525273fe4031e464";
     known-folders.flake = false;
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -26,8 +26,9 @@
               dontConfigure = true;
               dontInstall = true;
               buildPhase = ''
-                cp -r ${known-folders.outPath} src/known-folders/
-                cp -r ${zinput.outPath} src/zinput/
+                cp -r ${known-folders.outPath}/ ./src/known-folders
+                cp -r ${zinput.outPath}/ ./src/zinput
+
                 mkdir -p $out
                 zig build install -Drelease-safe=true -Ddata_version=master --prefix $out
               '';
